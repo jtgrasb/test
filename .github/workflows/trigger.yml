@@ -23,7 +23,7 @@ jobs:
       - uses: sator-imaging/Copy-to-Another-Repository@v1
         with:
           # required parameters
-          target-filepath: 'Moordyn-2.3.8-win64.exe'      # file path to copy
+          target-filepath: 'Moordyn-2.3.7-win64.exe'      # file path to copy
           output-branch: 'main'   # branch name to create pull request
           output-repo: 'jtgrasb/test_action'
           git-token: ${{ secrets.REPO_ACCESS_TOKEN }}
