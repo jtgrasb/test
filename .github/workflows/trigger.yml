@@ -1,8 +1,9 @@
 name: Trigger repository dispatch event on jtgrasb/test_action
 
 on:
-  release:
-    types: [created]
+  workflow_run:
+      workflows: ["Main release"]
+      types: [completed]
 
 jobs:
   dispatch:
