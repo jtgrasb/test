@@ -2,7 +2,7 @@ name: Trigger repository dispatch event on jtgrasb/test_action
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   dispatch:
     name: Repository Dispatch
