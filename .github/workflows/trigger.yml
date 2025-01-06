@@ -16,3 +16,23 @@ jobs:
         repository: jtgrasb/test_action
         event-type: run_compile # this will be "master" based on moordyn branch name
         client-payload: '{"sha": "${{ github.sha }}", "branch": "${{ github.ref_name }}"}'
+
+  copy_exe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: sator-imaging/Copy-to-Another-Repository@v1
+        with:
+          # required parameters
+          target-filepath: 'Moordyn-2.3.8-win64.exe'      # file path to copy
+          output-branch: 'main'   # branch name to create pull request
+          output-repo: 'jtgrasb/test_action'
+          git-token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          
+          # optional parameters and default values
+          commit-message-prefix: '[actions] '   # followed by source repository and file name
+          output-directory: "${{ github.event.repository.name }}"   # copy file into sub directory
+          pr-branch-prefix: "actions/${{ github.event.repository.name }}"   # branch name prefix followed by date and time
+          pr-title: "GitHub Actions: ${{ github.event.repository.name }}"   # followed by source repository and file name
+          pr-message: "${{ github.workflow }} on ${{ github.server_url }}/${{ github.repository }}"   # followed by action repository
+          git-name: "github-actions[bot]"   # your name can be set by ${{ github.actor }}
+          git-email: 'github-actions[bot]@users.noreply.github.com'   # associated user icon is shown in commit page
