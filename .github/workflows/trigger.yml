@@ -3,7 +3,7 @@ name: Trigger repository dispatch event on jtgrasb/test_action
 on:
   release:
     types:
-      - released
+      - published
 
 jobs:
   dispatch:
