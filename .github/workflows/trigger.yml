@@ -1,8 +1,13 @@
 name: Trigger repository dispatch event on jtgrasb/test_action
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'Moordyn-2.3.7-win64.exe'  # limit trigger to the target-filepath.
+                     # It's not elegant to set same value in two options but
+                     # there is no way to retrieve this value in composite action.
 
 jobs:
   dispatch:
