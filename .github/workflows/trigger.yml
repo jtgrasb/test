@@ -1,0 +1,17 @@
+name: Trigger repository dispatch event on jtgrasb/test_action
+on:
+  push:
+    branches:
+      - master
+jobs:
+  dispatch:
+    name: Repository Dispatch
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'jtgrasb'
+    steps:
+    - uses: peter-evans/repository-dispatch@v3
+      with:
+        token: ${{ secrets.REPO_ACCESS_TOKEN }} # create token for jtgrasb.test_action repo 
+        repository: jtgrasb/test_action
+        event-type: run_compile # this will be "master" based on moordyn branch name
+        client-payload: '{"sha": "${{ github.sha }}", "branch": "${{ github.ref_name }}"}'
